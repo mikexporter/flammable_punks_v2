@@ -1,5 +1,8 @@
-# flammable_punks_v2
-Flammable Punks V2
+# Flammable Punks V2
+
+## A 10,000 generative dynamic NFT collection.
+
+### Decide the fate of your punks on-chain!
 
 www.flammablepunks.com
 
