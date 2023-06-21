@@ -5,8 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        Sofia: ['Sofia', 'fire'],
-        Rancho: ['Rancho', 'fire-animation'],
+        'FIRESTARTER': ['FIRESTARTER', 'sans-serif'],
       }
     },
   },

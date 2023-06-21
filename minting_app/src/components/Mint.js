@@ -1,108 +1,50 @@
+import React from 'react';
+
+import { useContractWrite, usePrepareContractWrite } from 'wagmi';
+import abi from '../abi/abi.json';
+import { connected } from 'process';
 
 const Mint = (props) => {
 
-    const selectQuantityHandler = () => {
-        let tempQuantities = document.getElementById("quantities");
-        let tempQuantity = tempQuantities.options[tempQuantities.selectedIndex].value;
-        props.setQuantity(tempQuantity);
+    const quantity = props.quantity;
+    const setQuantity = props.setQuantity;
+    const userAddress = props.userAddress;
+    const  contractAddress = '0xFa73bF38C8D97c21502c5289AA71ACCc859e8a50';
+
+    const incrementQuantity = () => {
+        if (quantity < 5){
+            setQuantity(quantity + 1);
+            console.log(mintPunksConfig);
+        }
     };
 
-    const mintHandler = () => {
-        props.contract.mintPunks(props.quantity);
+    const decrementQuantity = () => {
+        if (quantity > 1){
+            setQuantity(quantity - 1);
+        }
     };
+
+    const { config: mintPunksConfig } = usePrepareContractWrite({
+        addressOrName: contractAddress,
+        contractInterface: abi,
+        functionName: 'mintPunks',
+        args: [quantity],
+    });
+
+    const { write: mintPunks  } = useContractWrite(mintPunksConfig);
 
     return(
-        <div 
-            className="
-            items-stretch  
-            justify-top
-            h-full
-            w-full
-            flex
-            flex-col
-            items-center
-            text-center
-            col-span-1
-            m-1        
-            "
-        >
-            <h2 className="
-                font-medium 
-                leading-tight 
-                text-4xl 
-                text-red-600
-                text-gray-300
-                text-center
-                m-1                
-                
-                bg-gradient-to-b
-                from-yellow-600 via-red-600 to-black
-            ">Mint</h2>
-            <div>Quantity:</div>
-            <select
-            id="quantities"  
-            onChange={selectQuantityHandler}
-            className="
-                form-select
-                block
-                px-3
-                py-1.5
-                text-base
-                text-center
-                font-normal
-                text-black
-                bg-white 
-                bg-clip-padding 
-                bg-no-repeat
-                border 
-                border-solid 
-                border-black
-                rounded-3xl
-                transition
-                ease-in-out
-                m-1
-                focus:text-black
-                focus:bg-white 
-                focus:border-black
-                focus:outline-none
-                appearance-none"
-            >
-                <option value="1">1</option> 
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-            <button
-                className="
-                    inline-block 
-                    px-6 
-                    py-2 
-                    border-2 
-                    border-black 
-                    text-black
-                    font-medium text-xs 
-                    leading-tight 
-                    uppercase 
-                    focus:outline-none 
-                    focus:ring-0 
-                    transition 
-                    duration-150 
-                    ease-in-out
-                    hover:bg-red-600
-                    hover:text-black
-                    hover:border-black
-                    ring-0
-                    rounded-3xl
-                    bg-gradient-to-b
-                    from-black via-gray-300 to-black
-                "
-                onClick = { mintHandler }
-            >
-                    Mint
-            </button>
+        <div className='h-full w-full'>
+        <button onClick={decrementQuantity} className = "w-1/3 h-1/2 align-bottom rounded-tl-lg hover:bg-[#fc6401] hover:text-[#D73502]">-</button>
+        <button disabled className = "w-1/3 h-1/2 align-bottom">{quantity}</button>
+        <button onClick={incrementQuantity} className = "w-1/3 h-1/2 align-bottom rounded-tr-lg hover:bg-[#fc6401] hover:text-[#D73502]">+</button>
+
+        <button onClick={() => mintPunks?.()} className="w-full h-1/2 align-top rounded-b-lg hover:bg-[#fc6401] hover:text-[#D73502]">
+            mint
+        </button>
         </div>
     )
 };
+
 
 export default Mint;
