@@ -56,7 +56,7 @@ function App() {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
-      <div className="flex justify-between bg-black font-sans min-w-[600px]">
+      <div className="flex justify-between bg-black font-sans min-w-[750px]">
         <div className="mx-auto">
         <div className="text-center font-FIRESTARTER text-5xl p-10">
           <a className = "text-[#801100]">F</a>
