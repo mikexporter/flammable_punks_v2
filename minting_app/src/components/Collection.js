@@ -39,7 +39,7 @@ export const Collection = (props) => {
     }, [currentMurderTokenId]); // <-- We pass `count` as a dependency of the effect
     
     // If not connected, return a specific image
-    if (!nftCollection) {
+    if (nftCollection?.ownedNfts?.length === 0 | !nftCollection?.ownedNfts | !nftCollection) {
       return ( 
         <div className="w-full h-full justify-center flex">
           <img className="" src={ tutorial_img } alt="Not connected"/>
