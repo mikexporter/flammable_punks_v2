@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useContractWrite, usePrepareContractWrite } from 'wagmi';
 import abi from '../abi/abi.json';
+import tutorial_img from '../images/tutorial.jpeg';
 
 export const Collection = (props) => {
 
@@ -36,7 +37,15 @@ export const Collection = (props) => {
     useEffect(() => {
       murderPunk?.();
     }, [currentMurderTokenId]); // <-- We pass `count` as a dependency of the effect
-
+    
+    // If not connected, return a specific image
+    if (!nftCollection) {
+      return ( 
+        <div className="w-full h-full justify-center flex">
+          <img className="" src={ tutorial_img } alt="Not connected"/>
+        </div>
+      );
+    }
     return (
         <div>
           <div className="flex flex-wrap justify-center">
