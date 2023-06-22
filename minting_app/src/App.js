@@ -56,8 +56,7 @@ function App() {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains}>
-      <div className="flex justify-between bg-black font-sans min-w-[750px]">
-        <div className="mx-auto">
+      <div className="flex flex-wrap justify-center bg-black font-sans">
         <div className="text-center font-FIRESTARTER text-5xl p-10">
           <a className = "text-[#801100]">F</a>
           <a className = "text-[#B62203]">l</a>
@@ -74,7 +73,6 @@ function App() {
           <a className = "text-[#801100]">k</a>
           <a className = "text-[#B62203]">s</a>
         </div>
-        </div>
         <div>
           <div className="min-w-[200px] max-w-[350px] bg-[#c52a01]  text-[#d1dff7] text-3xl font-bold py-2 px-4 m-10 hover:bg-[#fc6401] hover:text-[#D73502] rounded-2xl">
             <Connector
@@ -89,22 +87,9 @@ function App() {
       </div>
       
 
-      <div className = "flex">
+      <div className = "flex flex-wrap justify-center">
 
-        <div className = "
-          mx-auto 
-          text-3xl 
-          p-10 
-          rounded-3xl
-        ">
-          <Collection
-            nftCollection = { nftCollection }
-            contractAddress = { contractAddress }
-          />
-        </div>
-
-        <div className="
-          min-w-[200px]
+      <div className="
           w-full 
           h-[100px] 
           max-w-[350px] 
@@ -121,6 +106,20 @@ function App() {
             userAddress = { userAddress }
           />
         </div>
+
+        <div className = "
+          w-full
+          text-3xl 
+          p-10 
+          rounded-3xl
+        ">
+          <Collection
+            nftCollection = { nftCollection }
+            contractAddress = { contractAddress }
+          />
+        </div>
+
+
       
       </div>
 

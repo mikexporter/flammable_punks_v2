@@ -39,7 +39,7 @@ export const Collection = (props) => {
 
     return (
         <div>
-          <div className="flex flex-wrap">
+          <div className="flex flex-wrap justify-center">
             {nftCollection?.ownedNfts?.map((nft, index) => {
               const imageUrl = nft?.image?.originalUrl;
               const tokenId = nft?.tokenId;
